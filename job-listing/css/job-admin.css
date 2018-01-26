@@ -16,7 +16,7 @@
 .meta{
 	margin-top: 20px;
 }
-.meta-textarea{
+.wp-textarea{
 	height: 100px;
 	width: 75%;
 }
@@ -26,4 +26,38 @@
 	float: left;
 	background: #ffffff !important;
 	border-bottom: none !important;
+}
+#job-sort{
+
+}
+.icon32{
+
+}
+.wrap{
+
+}
+#custom-type-list{
+	margin: 2px 0;
+}
+#custom-type-list li{
+	border: 1px solid;
+	-moz-border-radius : 5px;
+	-webkit-border-radius:5px;
+	border-radius: 5px;
+	background-color: #f7f7f7;
+	max-width:400px;
+	padding: 10px;
+}
+#custom-type-list li.breaker{
+	background:none;
+	margin: 5px 0 25px;
+	line-height: 25px;
+	border: none;
+	font-size: 22px;
+	border-bottom: 1px double #000;
+	border-top: 1px double #000;
+}
+
+#loading-animation{
+	display: none;
 }

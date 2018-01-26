@@ -46,7 +46,7 @@ function wp_register_post_type(){
     ),
     'supports' => array(
         'title',
-        //'editor',
+        'editor',
         'author',
         'custom-fields',  
          'thumbnail',    

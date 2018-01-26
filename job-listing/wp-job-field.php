@@ -4,7 +4,7 @@ function wp_add_custom_metabox(){
 
 		add_meta_box(
 			'wp_meta',
-			'Job Listing',
+			__( 'Job Listing' ),
 			'wp_meta_callback',
 			'job',
 			'side',
@@ -23,7 +23,7 @@ function wp_meta_callback( $post ){
 	<div>
 			<div class="meta-row">
 				<div class="meta-th">
-					<label for ="job-id" class = "wp-row-title">Job ID </label>
+					<label for ="job-id" class = "wp-row-title"><?php  _e('Job Id' ,'wp-job-listing' ); ?></label>
 				</div>
  				<div class="meta-td">
  					<input type="text" name="job_id" id="job-id" value="<?php if ( ! empty ( $wp_stored_meta['job_id'])) echo esc_attr($wp_stored_meta['job_id'][0]); ?>" />
@@ -31,7 +31,7 @@ function wp_meta_callback( $post ){
 			</div>
 			<div class="meta-row">
 				<div class="meta-th">
-					<label for="date-listed" class="wp-row-title">Date Listed</label>
+					<label for="date-listed" class="wp-row-title"><?php  _e('Date Listed','wp-job-listing'); ?></label>
 				</div>
 				<div class="meta-td">
 					<input type="text" class="wp-row-content datepicker" name="date_listed" id ="date-listed" value=""/>
@@ -39,7 +39,7 @@ function wp_meta_callback( $post ){
 			</div>
 			<div class="meta-row">
 				<div class="meta-th">
-					<label for="date-listed" class="wp-row-title">Application Deadline</label>
+					<label for="date-listed" class="wp-row-title"><?php  _e('Application Deadline','wp-job-listing'); ?></label>
 				</div>
 				<div class="meta-td">
 					<input type="text"  class="wp-row-content datepicker"  name="application_deadline" id ="app-deadline" value="" />
@@ -47,18 +47,18 @@ function wp_meta_callback( $post ){
 			</div>
 			<div class="meta-row">
 				<div class="meta-th">
-					<label for="relocation" class="wp-row-title">Relocation Assistant</label>
+					<label for="relocation" class="wp-row-title"><?php  _e('Relocation Assistant','wp-job-listing'); ?></label>
 				</div>
 				<div class="meta-td">
 					 <select name="relocation" id = "relocation_assistance">
-					 	<option value="select-yes">Yes</option>
-					 	<option value="select-no">No</option>
+					 	<option value="1">Yes</option>
+					 	<option value="0">No</option>
 					 </select>
 				</div>
 			</div>
 			<div class="meta-row">
 				<div class="meta-th">
-					<span>Principle Duties</span>
+					<span><?php  _e('Principle Duties','wp-job-listing'); ?></span>
 				</div>
 			</div>
 			<div class="meta-editor">
@@ -72,26 +72,24 @@ function wp_meta_callback( $post ){
 					wp_editor($content,$editor,$settings);
 				?>
 			</div>
+			
 			<div class="meta-row">
 				<div class="meta-th">
-					<span>Minimum requirnments</span>
-					
-				</div>
-			</div>
-			<div class="meta-row">
+					<span><?php  _e('Minimum requirnments','wp-job-listing'); ?></span>
+				</div>	
 				<div class="meta-td">
-						<textarea class="minimum-requirnment" name= "minimum_requirnment" id="minimum-requirements"  rows="5" cols ="100"> </textarea>
+						<div id="qt-minimum-requirements-toolbar" class="quicktags-toolbar"></div>
+						<textarea class="wp-textarea" name= "minimum_requirement" id="minimum-requirements" > </textarea>
 				</div>	
 			</div>
+				
 			<div class="meta-row">
 				<div class="meta-th">
-					<span>Preferred requirnments</span>
-					
+					<span><?php  _e('Preferrd requirnments','wp-job-listing'); ?></span>
 				</div>
-			</div>
-			<div class="meta-row">
 				<div class="meta-td">
-						<textarea class="preferred-requirnment" name= "preferred_requirnment" id="preferred-requirements" rows="5" cols ="100"> </textarea>
+					    <div id="qt-preferrd-requirements-toolbar" class="quicktags-toolbar"></div>
+						<textarea class="wp-textarea" name= "preferred_requirement"  id="preferred-requirements" > </textarea>
 				</div>	
 			</div>
 	</div>
@@ -113,8 +111,12 @@ function wp_meta_save($post_id){
 		update_post_meta($post_id , 'job_id' , sanitize_text_field( $_POST['job_id']));
 		update_post_meta($post_id , 'date_listed' , sanitize_text_field( $_POST['date_listed']));
 		update_post_meta($post_id , 'application_deadline' , sanitize_text_field( $_POST['application_deadline']));
-		update_post_meta($post_id , 'duties' , sanitize_text_field( $_POST['principle_duties']));
+		update_post_meta($post_id , 'principle_duties' , sanitize_text_field( $_POST['principle_duties']));
 		update_post_meta($post_id , 'relocation' , sanitize_text_field( $_POST['relocation']));
+		update_post_meta($post_id , 'minimum_requirement' , sanitize_text_field( $_POST['minimum_requirement']));
+		update_post_meta($post_id , 'preferred_requirement' , sanitize_text_field( $_POST['preferred_requirement']));
 	}
+	 
+ 
 }
 add_action('save_post' , 'wp_meta_save');
