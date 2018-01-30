@@ -36,20 +36,17 @@ function reorder_admin_job_callback()
 }
 
 function wp_save_reorder(){
-	wp_send_json_error('You dd');
-	/*alert($_POST['order']);
-	if(! wp_ajax_referer('wp-job-order', 'security')){
-		alert('hello');
+	//wp_send_json_error('You dd');
+	//alert($_POST['order']);
+	if(! check_ajax_referer('wp-job-order', 'security')){
 		return wp_send_json_error('Invalid Nonce');
 	}
 	if( ! current_user_can('manage_options')){
 		return wp_send_json_error('You do not have permission');
-		alert('hi');
 	}
 
 	$order = $_POST['order'];
-	var_dump($order);
-	die();
+	
 	$counter = 0;
 	foreach ($order as $item_id) {
 		$post = array(
@@ -59,6 +56,13 @@ function wp_save_reorder(){
 		wp_update_post($post);
 		$counter++;
 	}
-	wp_send_json_success('Post saved');*/
+	wp_send_json_success('Post saved');
 }
 add_action('wp_ajax_save_sort', 'wp_save_reorder');
+/*
+add_filter('allowed_http_origins', 'add_allowed_origins');
+
+function add_allowed_origins($origins) {
+    $origins[] = 'http://localhost/wordpress/';
+    return $origins;
+}*/

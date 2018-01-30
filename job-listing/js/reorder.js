@@ -6,10 +6,10 @@ jQuery(document).ready(function($) {
  	 	update: function(event , ui){
  	 		animation.show();
  	 		$.ajax({
- 	 			url: ajaxurl,
- 	 			type: 'POST',
+ 	 			url : ajaxurl,
+ 	 			type : 'POST',
  	 			dataType : 'json',
- 	 			data: {
+ 	 			data : {
  	 				action: 'save_sort',
  	 				order:  sortList.sortable('toArray'),
  	 				security : WP_JOB_LISTING.security
@@ -23,8 +23,9 @@ jQuery(document).ready(function($) {
  	 			},
  	 			error: function(error){
  	 				//console.log(sortList.sortable('toArray'));
- 	 				$('div#message').remove()
- 	 				pageTitle.after('<div id="message" class="error"> <p>' + WP_JOB_LISTING.failure + '-'+ error.toString() +'</p> </div>');
+ 	 				$('div#message').remove();
+ 	 				console.log(error); 	 				
+ 	 				pageTitle.after('<div id="message" class="error"> <p>' + WP_JOB_LISTING.failure + '-'+ error +'</p> </div>');
  	 			}
  	 		});
  	 	}
