@@ -94,6 +94,26 @@ function wp_register_texobomy(){
   register_taxonomy('location' , 'job', $args);
 
 }
-
-
 add_action('init' , 'wp_register_texobomy');
+
+function wp_load_templates( $original_template ){
+	if(get_query_var( 'post_type' ) != 'job'){
+		return;
+	}
+	if(is_archive() || is_search()){
+		if(file_exists( get_stylesheet_directory().'/archive-job.php')){
+			return get_stylesheet_directory().'/archive-job.php';
+		}else{
+			return plugin_dir_path(__FILE__).'templates/archive-job.php';
+		}
+	}else{
+		if(file_exists( get_stylesheet_directory().'/single-job.php')){
+			return get_stylesheet_directory().'/single-job.php';
+		}else{
+			return plugin_dir_path(__FILE__).'templates/single-job.php';
+		}
+	}
+	return $original_template;
+}
+
+add_action('template_include' , 'wp_load_templates');

@@ -17,6 +17,7 @@ $dir = plugin_dir_path(__FILE__);
 require_once ( $dir . 'wp-job-cpt.php');
 require_once ( $dir . 'wp-job-render-admin.php');
 require_once ( $dir . 'wp-job-field.php');
+require_once ( $dir . 'wp-job-shortcode.php');
 
 function wp_admin_enque_scripts(){
     global $pagenow, $typenow;
